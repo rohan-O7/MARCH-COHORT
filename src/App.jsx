@@ -48,12 +48,12 @@ const CreditRiskAnalyzer = () => {
         <nav className="bg-blue-900 text-white shadow-lg w-full">
           <div className="container mx-auto px-4 py-3 flex justify-center">
             <div className="flex space-x-6 items-center">
-              <span className="font-bold text-xl mr-8">Credit Risk Analyzer</span>
-              <div className="flex gap-2 space-x-4">
-                <Link to="/dashboard" className="hover:text-blue-200">Dashboard</Link>
-                <Link to="/reports" className="hover:text-blue-200">Reports</Link>
-                <Link to="/settings" className="hover:text-blue-200">Settings</Link>
-                <Link to="/help" className="hover:text-blue-200">Help</Link>
+              <span className="font-bold text-xl mr-8 p-2">Credit Risk Analyzer</span>
+              <div className="flex gap-2 space-x-4 p-2">
+                <Link to="/dashboard" className="hover:text-blue-200 ">Dashboard</Link>
+                <Link to="/reports" className="hover:text-blue-200 ">Reports</Link>
+                <Link to="/settings" className="hover:text-blue-200 ">Settings</Link>
+                
               </div>
             </div>
           </div>
