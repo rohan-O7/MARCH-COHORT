@@ -34,12 +34,18 @@ const CreditRiskAnalyzer = () => {
   };
 
   const calculateRiskScore = (data) => {
-    const creditScoreWeight = parseInt(data.creditScore) / 850 * 40;
-    const dtiWeight = (1 - parseFloat(data.debtToIncome) / 100) * 25;
-    const employmentWeight = Math.min(parseInt(data.employmentYears), 10) / 10 * 20;
-    const loanAmountWeight = (1 - parseInt(data.loanAmount) / 100000) * 15;
-    return Math.round(creditScoreWeight + dtiWeight + employmentWeight + loanAmountWeight);
-  };
+    const creditScore = Math.max(0, parseInt(data.creditScore)); // Ensure non-negative
+    const dti = Math.max(0, parseFloat(data.debtToIncome)); // Ensure non-negative
+    const employmentYears = Math.max(0, parseInt(data.employmentYears)); // Ensure non-negative
+    const loanAmount = Math.max(0, parseInt(data.loanAmount)); // Ensure non-negative
+
+    const creditScoreWeight = (creditScore / 850) * 40;
+    const dtiWeight = Math.max(0, (1 - dti / 100)) * 25;
+    const employmentWeight = (Math.min(employmentYears, 10) / 10) * 20;
+    const loanAmountWeight = Math.max(0, (1 - loanAmount / 100000)) * 15;
+
+    return Math.round(Math.max(0, creditScoreWeight + dtiWeight + employmentWeight + loanAmountWeight));
+};
 
   return (
     <Router>
@@ -53,7 +59,6 @@ const CreditRiskAnalyzer = () => {
                 <Link to="/dashboard" className="hover:text-blue-200 ">Dashboard</Link>
                 <Link to="/reports" className="hover:text-blue-200 ">Reports</Link>
                 <Link to="/settings" className="hover:text-blue-200 ">Settings</Link>
-                
               </div>
             </div>
           </div>
